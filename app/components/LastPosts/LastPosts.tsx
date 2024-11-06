@@ -1,5 +1,5 @@
 // app/components/LastPosts.js
-
+import styles from "./LastPosts.module.css";
 export interface Post {
   text: string;
   date: string;
@@ -8,17 +8,37 @@ export interface Post {
 
 export interface LastPostsProps {
   lastPosts: Post[];
+  channelName: string;
+  avatar: string;
 }
 
-export default function LastPosts({ lastPosts }: LastPostsProps) {
+export default function LastPosts({
+  lastPosts,
+  channelName,
+  avatar,
+}: LastPostsProps) {
   return (
     <section>
-      <h2>Последние посты</h2>
-      <ul>
+      <h2 className={styles.header}>Последние посты</h2>
+      <ul className={styles.postsList}>
         {lastPosts.map((post, index) => (
-          <li key={index}>
-            <p>{post.text}</p>
-            <small>{post.date}</small>
+          <li key={index} className={styles.post}>
+            <div className={styles.postHeader}>
+              <img src={avatar} /> {channelName}
+              <span className={styles.postDate}>{post.date}</span>
+            </div>
+            <div className={styles.media}>
+              {post.media.map((url, idx) => (
+                <img
+                  key={idx}
+                  src={url}
+                  alt={`Media ${idx}`}
+                  className={styles.image}
+                />
+              ))}
+            </div>
+
+            <p className={styles.postText}>{post.text}</p>
           </li>
         ))}
       </ul>

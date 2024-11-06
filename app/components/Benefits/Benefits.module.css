@@ -1,0 +1,17 @@
+.benefits {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.benefitItem {
+  display: flex;
+  flex: 1 1 45%;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  border: 1px #ffffff solid;
+  border-radius: 10px;
+  background: grey;
+}

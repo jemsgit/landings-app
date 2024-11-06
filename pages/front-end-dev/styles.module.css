@@ -44,7 +44,28 @@
   flex: 1 1 auto;
   border: 1px white solid;
   border-radius: 10px;
-  padding: 20px;
+  padding: 10px 20px;
+}
+
+.headerAdditonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subscribeLink {
+  width: 100%;
+  background: #c3deff;
+  outline: none;
+  border: none;
+  display: block;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 20px;
+  box-shadow: 3px 3px 0px 0px black;
+  cursor: pointer;
+  line-height: 40px;
+  color: black;
 }
 
 .subscribersCount {
@@ -68,16 +89,8 @@
   color: #666;
 }
 
-.benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.benefit-item {
-  background-color: #f4f8fc;
-  padding: 15px;
-  border-radius: 8px;
+.mainContent {
+  padding: 20px 40px;
 }
 
 .benefit-item h2 {

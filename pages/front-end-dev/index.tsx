@@ -1,11 +1,12 @@
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
-import { Post } from "../../app/components/LastPosts/LastPosts";
+import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
   fetchChannelInfo,
   fetchLastPostsFromTelegram,
 } from "../../app/lib/telegram";
 
 import styles from "./styles.module.css";
+import Benefits from "@/app/components/Benefits/Benefits";
 
 interface Info {
   avatarUrl: string;
@@ -107,40 +108,27 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
             <a href="https://t.me/front_end_dev">https://t.me/front_end_dev</a>
           </div>
         </section>
-        <section className={styles.headerAdditon}>
-          <span className={styles.subscribersCount}>
-            {channelInfo.subscribersCount}
-          </span>
-          <span>подписчиков</span>
-        </section>
+        <div className={styles.headerAdditonWrapper}>
+          <section className={styles.headerAdditon}>
+            <span className={styles.subscribersCount}>
+              {channelInfo.subscribersCount}
+            </span>
+            <span>подписчиков</span>
+          </section>
+          <a href="https://t.me/front_end_dev" className={styles.subscribeLink}>
+            Подписаться
+          </a>
+        </div>
       </header>
-      <section className="benefits">
-        {benefits.map((item, index) => (
-          <div key={index} className="benefit-item">
-            <h2>{item.title}</h2>
-            <p className="benefit">{item.benefit}</p>
-            <p className="description">{item.description}</p>
-          </div>
-        ))}
-      </section>
-      <div className={styles.posts}>
-        {lastPosts.map((post, index) => (
-          <div key={index} className={styles.post}>
-            <h3 className={styles.postDate}>{post.date}</h3>
-            <p>{post.text}</p>
-            <div className={styles.media}>
-              {post.media.map((url, idx) => (
-                <img
-                  key={idx}
-                  src={url}
-                  alt={`Media ${idx}`}
-                  className={styles.image}
-                />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <main className={styles.mainContent}>
+        <Benefits benefits={benefits} />
+
+        <LastPosts
+          lastPosts={lastPosts}
+          channelName="FrontEndDev"
+          avatar={channelInfo.avatarUrl}
+        />
+      </main>
       <footer className="cta">
         <button className="subscribe-button">Subscribe Now</button>
       </footer>

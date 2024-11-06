@@ -34,6 +34,7 @@ export async function fetchLastPostsFromTelegram(
           mediaUrls.push(path.join("/media", channelUsername, fileName));
         }
       }
+
       posts.push({
         text: msg.message,
         date: new Date(msg.date * 1000).toLocaleDateString(),
