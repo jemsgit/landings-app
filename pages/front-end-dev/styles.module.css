@@ -1,0 +1,115 @@
+/* front-end-landing.css */
+
+.container {
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  background: black;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  background-size: cover;
+  background-image: url("/media/front_end_dev/avatar.jpg");
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.headerSection {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  flex: 2 1 auto;
+}
+
+.headerSection div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.headerSection img {
+  border-radius: 50%;
+  width: 160px;
+  border: 5px #ffffff solid;
+}
+
+.headerAdditon {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  border: 1px white solid;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.subscribersCount {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.header h1 {
+  font-size: 3.5em;
+  text-shadow: 6px 3px #000000;
+}
+
+.details {
+  font-size: 20px;
+  display: inline-block;
+  margin: 10px 0;
+}
+
+.header p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefit-item {
+  background-color: #f4f8fc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.benefit-item h2 {
+  font-size: 1.4em;
+  color: #1e88e5;
+  margin-bottom: 10px;
+}
+
+.benefit-item .benefit {
+  font-weight: bold;
+}
+
+.benefit-item .description {
+  font-size: 1em;
+  color: #555;
+}
+
+.cta {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.subscribe-button {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.subscribe-button:hover {
+  background-color: #1565c0;
+}
