@@ -1,6 +1,7 @@
 // components/Layout.tsx
 import React from "react";
 import "../../app/globals.css"; // Make sure to import global CSS here
+import styles from "./Layout.module.css";
 
 import localFont from "next/font/local";
 
@@ -25,9 +26,7 @@ const Layout: React.FC = ({ children }) => {
   return (
     <div className={`${inter.variable} ${geistMono.variable}`}>
       <main>{children}</main>
-      <footer>
-        <p>© Made by JemJem</p>
-      </footer>
+      <footer className={styles.footer}>© Made with ❤️ by JemJem</footer>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import path from "path";
-import { Api, TelegramClient } from "telegram";
+import { Api } from "telegram";
 import { getTelegramClient } from "./telegram-client";
+import fs from "fs";
 
 export async function fetchLastPostsFromTelegram(
   channelUsername: string,
@@ -15,6 +16,11 @@ export async function fetchLastPostsFromTelegram(
 
     let posts = [];
     const mediaDir = path.join(process.cwd(), "public/media", channelUsername);
+
+    if (!fs.existsSync(mediaDir)) {
+      fs.mkdirSync(mediaDir, { recursive: true });
+    }
+
     for (let i = 0; i < messages.length; i++) {
       const msg = messages[i];
 
@@ -54,7 +60,12 @@ export async function fetchChannelInfo(channelUsername: string) {
 
   try {
     const entity = (await client.getEntity(channelUsername)) as Api.Channel;
-    console.log(entity);
+
+    const mediaDir = path.join(process.cwd(), "public/media", channelUsername);
+
+    if (!fs.existsSync(mediaDir)) {
+      fs.mkdirSync(mediaDir, { recursive: true });
+    }
 
     const avatarFilePath = path.join(
       process.cwd(),

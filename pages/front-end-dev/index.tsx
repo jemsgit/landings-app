@@ -7,6 +7,9 @@ import {
 
 import styles from "./styles.module.css";
 import Benefits from "@/app/components/Benefits/Benefits";
+import { numberWithSpace } from "@/app/utils/number";
+import { pluralize } from "@/app/utils/formatters";
+import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
 
 interface Info {
   avatarUrl: string;
@@ -71,29 +74,14 @@ const benefits = [
 export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <section className={styles.headerSection}>
-          <img src={channelInfo.avatarUrl} alt="logo" />
-          <div>
-            <h1>{channelInfo.title}</h1>
-            <span className={styles.details}>
-              Телеграм канал о фронт энд разработке
-            </span>
-            <a href="https://t.me/front_end_dev">https://t.me/front_end_dev</a>
-          </div>
-        </section>
-        <div className={styles.headerAdditonWrapper}>
-          <section className={styles.headerAdditon}>
-            <span className={styles.subscribersCount}>
-              {channelInfo.subscribersCount}
-            </span>
-            <span>подписчиков</span>
-          </section>
-          <a href="https://t.me/front_end_dev" className={styles.subscribeLink}>
-            Подписаться
-          </a>
-        </div>
-      </header>
+      <ChannelHeader
+        channelInfo={{
+          ...channelInfo,
+          description: "Телеграм канал о front end разработке",
+          link: "https://t.me/front_end_dev",
+        }}
+      />
+
       <main className={styles.mainContent}>
         <Benefits benefits={benefits} title="Почему FrontEndDev" />
         <section className={styles.join}>
@@ -108,10 +96,12 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           avatar={channelInfo.avatarUrl}
         />
       </main>
-      <footer className="cta">
-        <p>Остались вопросы? Напиши мне</p>
+      <footer className={styles.questionSection}>
+        <p>Есть вопросы или предложения?</p>
 
-        <a href="https://t.me/jem_jem">Jem Jem</a>
+        <p>
+          Напиши мне в Telegram - <a href="https://t.me/jem_jem">Jem Jem</a>
+        </p>
       </footer>
     </div>
   );

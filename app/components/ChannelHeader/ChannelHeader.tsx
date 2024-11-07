@@ -1,32 +1,57 @@
-interface Props {}
+import { numberWithSpace } from "@/app/utils/number";
+import styles from "./ChannelHeader.module.css";
+import { pluralize } from "@/app/utils/formatters";
 
-function ChannelHeader(props: Props) {
-  const {} = props;
+interface Info {
+  avatarUrl: string;
+  title: string;
+  subscribersCount: number;
+  link: string;
+  description: string;
+}
 
+interface ChannelHeaderProps {
+  channelInfo: Info;
+}
+
+function ChannelHeader({ channelInfo }: ChannelHeaderProps) {
+  const { title, avatarUrl, subscribersCount, link, description } = channelInfo;
   return (
-    <header className={styles.header}>
-      <section className={styles.headerSection}>
-        <img src={channelInfo.avatarUrl} alt="logo" />
-        <div>
-          <h1>{channelInfo.title}</h1>
-          <span className={styles.details}>
-            Телеграм канал о фронт энд разработке
-          </span>
-          <a href="https://t.me/front_end_dev">https://t.me/front_end_dev</a>
-        </div>
-      </section>
-      <div className={styles.headerAdditonWrapper}>
-        <section className={styles.headerAdditon}>
-          <span className={styles.subscribersCount}>
-            {channelInfo.subscribersCount}
-          </span>
-          <span>подписчиков</span>
+    <div
+      className={styles.headerWrapper}
+      style={{
+        backgroundImage: `url("${avatarUrl}")`,
+        backgroundSize: "cover",
+      }}
+    >
+      <header className={styles.header}>
+        <section className={styles.headerSection}>
+          <img src={avatarUrl} alt="logo" />
+          <div>
+            <h1>{title}</h1>
+            <span className={styles.details}>{description}</span>
+            <a href={link}>{link}</a>
+          </div>
         </section>
-        <a href="https://t.me/front_end_dev" className={styles.subscribeLink}>
-          Подписаться
-        </a>
-      </div>
-    </header>
+        <div className={styles.headerAdditonWrapper}>
+          <section className={styles.headerAdditon}>
+            <span className={styles.subscribersCount}>
+              {numberWithSpace(subscribersCount)}
+            </span>
+            <span>
+              {pluralize(subscribersCount, [
+                "подписчик",
+                "подписчика",
+                "подписчиков",
+              ])}
+            </span>
+          </section>
+          <a href={link} className={styles.subscribeLink}>
+            Подписаться
+          </a>
+        </div>
+      </header>
+    </div>
   );
 }
 
