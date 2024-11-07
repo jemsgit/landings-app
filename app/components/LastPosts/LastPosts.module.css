@@ -19,6 +19,7 @@
   marker: none;
   background: #8a8a8ab0;
   flex: 1 1 45%;
+  max-width: calc(50% - 20px);
   border-radius: 25px;
   text-align: left;
   padding: 20px;
@@ -51,6 +52,7 @@
   margin-bottom: 10px;
   font-size: 20px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .postHeader img {
@@ -69,5 +71,9 @@
     flex-direction: column;
     max-width: 600px;
     flex-wrap: nowrap;
+  }
+
+  .post {
+    max-width: 100%;
   }
 }
