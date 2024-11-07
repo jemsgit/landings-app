@@ -3,7 +3,8 @@
 .container {
   font-family: Arial, sans-serif;
   color: #ffffff;
-  background: black;
+  background: linear-gradient(184deg, black, #747474);
+  font-family: var(--font-inter);
 }
 
 .header {
@@ -66,6 +67,7 @@
   cursor: pointer;
   line-height: 40px;
   color: black;
+  text-align: center;
 }
 
 .subscribersCount {
@@ -90,7 +92,7 @@
 }
 
 .mainContent {
-  padding: 20px 40px;
+  padding: 20px 0;
 }
 
 .benefit-item h2 {
@@ -121,8 +123,36 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  text-align: center;
 }
 
 .subscribe-button:hover {
   background-color: #1565c0;
+}
+
+.join {
+  width: 500px;
+  margin: 60px auto;
+  padding: 60px 20px 20px;
+  border-radius: 20px;
+  background: #5390fa;
+  position: relative;
+}
+
+.join p {
+  z-index: 4;
+  position: relative;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.join::before {
+  content: "🚀";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: 3;
+  font-size: 100px;
+  top: -42px;
+  left: 80px;
 }

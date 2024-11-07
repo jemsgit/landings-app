@@ -1,3 +1,12 @@
+.container {
+  max-width: 1000px;
+  margin: 20px auto 0;
+}
+
+.container h2 {
+  margin-bottom: 20px;
+}
+
 .benefits {
   display: flex;
   flex-direction: row;
@@ -7,11 +16,10 @@
 
 .benefitItem {
   display: flex;
-  flex: 1 1 45%;
+  flex: 1 1 25%;
   flex-direction: column;
   gap: 20px;
   padding: 16px;
-  border: 1px #ffffff solid;
-  border-radius: 10px;
-  background: grey;
+  background: #7f98fe6e;
+  justify-content: space-between;
 }

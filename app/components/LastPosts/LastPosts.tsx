@@ -10,15 +10,17 @@ export interface LastPostsProps {
   lastPosts: Post[];
   channelName: string;
   avatar: string;
+  className?: string;
 }
 
 export default function LastPosts({
   lastPosts,
   channelName,
   avatar,
+  className = "",
 }: LastPostsProps) {
   return (
-    <section>
+    <section className={className}>
       <h2 className={styles.header}>Последние посты</h2>
       <ul className={styles.postsList}>
         {lastPosts.map((post, index) => (

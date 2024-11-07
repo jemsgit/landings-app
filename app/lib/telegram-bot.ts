@@ -27,6 +27,3 @@ export async function getSubscriberCount(channelName: string) {
     return 0;
   }
 }
-
-// Example usage
-getSubscriberCount();
