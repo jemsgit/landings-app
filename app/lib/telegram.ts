@@ -2,11 +2,13 @@ import path from "path";
 import { Api } from "telegram";
 import { getTelegramClient } from "./telegram-client";
 import fs from "fs";
+import { avoidRateLimit } from "../utils/avoidRate";
 
 export async function fetchLastPostsFromTelegram(
   channelUsername: string,
   limit = 6
 ) {
+  await avoidRateLimit(Math.random() * 3000);
   const client = await getTelegramClient();
 
   try {
@@ -14,7 +16,7 @@ export async function fetchLastPostsFromTelegram(
 
     const messages = await client.getMessages(entity, { limit });
 
-    let posts = [];
+    const posts = [];
     const mediaDir = path.join(process.cwd(), "public/media", channelUsername);
 
     if (!fs.existsSync(mediaDir)) {
@@ -56,6 +58,7 @@ export async function fetchLastPostsFromTelegram(
 }
 
 export async function fetchChannelInfo(channelUsername: string) {
+  await avoidRateLimit(Math.random() * 3000);
   const client = await getTelegramClient();
 
   try {

@@ -1,4 +1,4 @@
-const axios = require("axios");
+import axios from "axios";
 
 // Replace with your bot token from BotFather
 const token = process.env.TELEGRAM_API_TOKEN;

@@ -1,15 +1,10 @@
 // components/Layout.tsx
-import React from "react";
+import React, { ReactNode } from "react";
 import "../../app/globals.css"; // Make sure to import global CSS here
 import styles from "./Layout.module.css";
 
 import localFont from "next/font/local";
 
-const geistSans = localFont({
-  src: "../../app/fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
 const geistMono = localFont({
   src: "../../app/fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -22,7 +17,11 @@ const inter = localFont({
   weight: "100 900",
 });
 
-const Layout: React.FC = ({ children }) => {
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className={`${inter.variable} ${geistMono.variable}`}>
       <main>{children}</main>

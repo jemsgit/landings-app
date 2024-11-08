@@ -14,6 +14,7 @@
   border-bottom-right-radius: 20px;
   backdrop-filter: blur(5px);
   background-color: #6e788b5c;
+  animation: fade-in 2s;
 }
 
 .headerSection {
@@ -32,6 +33,7 @@
 .headerSection img {
   border-radius: 50%;
   width: 160px;
+  height: 160px;
   border: 5px #ffffff solid;
 }
 
@@ -43,6 +45,7 @@
   border-radius: 10px;
   padding: 10px 20px;
   text-align: left;
+  background: #ffffff1c;
 }
 
 .headerAdditonWrapper {
@@ -112,11 +115,24 @@
     gap: 20px;
   }
 
+  .headerAdditon {
+    text-align: center;
+  }
+
   .headerSection img {
     display: none;
   }
 
   .headerAdditonWrapper {
     width: 100%;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -17,7 +17,7 @@ function Benefits({ benefits, title, className = "" }: BenefitsProps) {
       <h2 className={styles.header}>{title}</h2>
       <div className={styles.benefits}>
         {benefits.map((item, index) => (
-          <div key={index} className={styles.benefitItem}>
+          <div key={index} className={styles.benefitItem} data-aos="zoom-in">
             <h2>{item.title}</h2>
             <p className="benefit">{item.benefit}</p>
           </div>

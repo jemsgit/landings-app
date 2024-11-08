@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import AOS from "aos";
+
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
@@ -7,9 +10,10 @@ import {
 
 import styles from "./styles.module.css";
 import Benefits from "@/app/components/Benefits/Benefits";
-import { numberWithSpace } from "@/app/utils/number";
-import { pluralize } from "@/app/utils/formatters";
 import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
+import ContactSection from "@/app/components/ContactSection/ContactSection";
+
+import "aos/dist/aos.css";
 
 interface Info {
   avatarUrl: string;
@@ -24,6 +28,7 @@ interface ChannelProps {
 }
 
 const channelName = "front_end_dev";
+const inviteLink = "https://t.me/+YFZccG334dVmNTEy";
 
 export async function getStaticProps() {
   const lastPosts = await fetchLastPostsFromTelegram(channelName);
@@ -72,6 +77,13 @@ const benefits = [
 ];
 
 export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   return (
     <div className={styles.container}>
       <ChannelHeader
@@ -79,14 +91,15 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           ...channelInfo,
           description: "Телеграм канал о front end разработке",
           link: "https://t.me/front_end_dev",
+          inviteLink,
         }}
       />
 
       <main className={styles.mainContent}>
         <Benefits benefits={benefits} title="Почему FrontEndDev" />
         <section className={styles.join}>
-          <p>Присоедняйся и становись профессионалом вместе с FrontEndDev</p>
-          <a href="https://t.me/front_end_dev" className={styles.subscribeLink}>
+          <p>Присоединяйся и становись профессионалом вместе с FrontEndDev</p>
+          <a href={inviteLink} className={styles.subscribeLink}>
             Подписаться
           </a>
         </section>
@@ -96,13 +109,7 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           avatar={channelInfo.avatarUrl}
         />
       </main>
-      <footer className={styles.questionSection}>
-        <p>Есть вопросы или предложения?</p>
-
-        <p>
-          Напиши мне в Telegram - <a href="https://t.me/jem_jem">Jem Jem</a>
-        </p>
-      </footer>
+      <ContactSection />
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import AOS from "aos";
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
@@ -8,6 +10,9 @@ import {
 import styles from "../front-end-dev/styles.module.css";
 import Benefits from "@/app/components/Benefits/Benefits";
 import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
+import ContactSection from "@/app/components/ContactSection/ContactSection";
+
+import "aos/dist/aos.css";
 
 interface Info {
   avatarUrl: string;
@@ -22,6 +27,7 @@ interface ChannelProps {
 }
 
 const channelName = "habr_for_dev";
+const inviteLink = "https://t.me/+_DbI2le7Z3IzNzdi";
 
 export async function getStaticProps() {
   const lastPosts = await fetchLastPostsFromTelegram(channelName);
@@ -39,52 +45,60 @@ export async function getStaticProps() {
 
 const benefits = [
   {
-    title: "Актуальные статьи",
+    title: "Лучшие статьи с Habr",
     benefit:
-      "Получайте свежие статьи по веб-разработке, охватывающие последние технологии и тенденции, чтобы всегда оставаться в курсе.",
+      "Получайте отобранные лучшие статьи с Habr, чтобы не пропустить ничего важного из мира разработки.",
   },
   {
-    title: "Подробные обучающие материалы",
+    title: "Актуальные новости технологий",
     benefit:
-      "Узнавайте лучшие практики и углубляйтесь в сложные концепции с помощью подробных туториалов, разработанных для любого уровня подготовки.",
+      "Будьте в курсе последних новостей IT-индустрии и современных технологий, следуя за свежими публикациями.",
   },
   {
-    title: "Полезные инструменты и библиотеки",
+    title: "Разнообразие тем и языков",
     benefit:
-      "Открывайте для себя полезные инструменты и репозитории, которые помогут ускорить разработку и улучшить качество кода.",
+      "Читайте материалы по различным языкам программирования, фреймворкам и методологиям разработки.",
   },
   {
-    title: "Практическое применение",
+    title: "Обзор новых инструментов",
     benefit:
-      "Учитесь применять полученные знания на практике и сразу же внедрять их в свои проекты.",
+      "Узнавайте о новых инструментах и сервисах, которые помогут вам упростить рабочие процессы и улучшить качество кода.",
   },
   {
-    title: "Тематические подборки и обновления",
+    title: "Советы от экспертов",
     benefit:
-      "Следите за регулярными подборками лучших материалов по фронтенду и бэкенду, включая обновления популярных фреймворков и инструментов.",
+      "Ознакомьтесь с рекомендациями и кейсами опытных разработчиков для профессионального роста.",
   },
   {
-    title: "Советы по продуктивности",
+    title: "Обновления популярных технологий",
     benefit:
-      "Получайте советы и рекомендации по оптимизации рабочего процесса, чтобы работать эффективнее.",
+      "Следите за обновлениями популярных технологий и фреймворков, чтобы оставаться на гребне волны.",
   },
 ];
 
-export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
+export default function HabrForDev({ lastPosts, channelInfo }: ChannelProps) {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   return (
     <div className={styles.container}>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,
-          description: "Телеграм канал о web разработке",
+          description: "Телеграм канал c лучшими статьями с Habr.ru",
           link: "https://t.me/habr_for_dev",
+          inviteLink,
         }}
       />
 
       <main className={styles.mainContent}>
         <Benefits benefits={benefits} title="Почему HabrForDev" />
         <section className={styles.join}>
-          <p>Присоедняйся и поднимай скилы с HabrForDev</p>
+          <p>Будь в курсе технологий с HabrForDev</p>
           <a href="https://t.me/habr_for_dev" className={styles.subscribeLink}>
             Подписаться
           </a>
@@ -95,13 +109,7 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           avatar={channelInfo.avatarUrl}
         />
       </main>
-      <footer className={styles.questionSection}>
-        <p>Есть вопросы или предложения?</p>
-
-        <p>
-          Напиши мне в Telegram - <a href="https://t.me/jem_jem">Jem Jem</a>
-        </p>
-      </footer>
+      <ContactSection />
     </div>
   );
 }

@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import AOS from "aos";
+
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
@@ -8,6 +11,9 @@ import {
 import styles from "../front-end-dev/styles.module.css";
 import Benefits from "@/app/components/Benefits/Benefits";
 import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
+import ContactSection from "@/app/components/ContactSection/ContactSection";
+
+import "aos/dist/aos.css";
 
 interface Info {
   avatarUrl: string;
@@ -22,6 +28,7 @@ interface ChannelProps {
 }
 
 const channelName = "mobile_dvlp";
+const inviteLink = "https://t.me/+Bi2FbTFYU0g3MTcy";
 
 export async function getStaticProps() {
   const lastPosts = await fetchLastPostsFromTelegram(channelName);
@@ -39,52 +46,60 @@ export async function getStaticProps() {
 
 const benefits = [
   {
-    title: "Актуальные статьи",
+    title: "Свежие статьи по мобильной разработке",
     benefit:
-      "Получайте свежие статьи по веб-разработке, охватывающие последние технологии и тенденции, чтобы всегда оставаться в курсе.",
+      "Будьте в курсе последних новостей и технологий мобильной разработки с актуальными статьями.",
   },
   {
     title: "Подробные обучающие материалы",
     benefit:
-      "Узнавайте лучшие практики и углубляйтесь в сложные концепции с помощью подробных туториалов, разработанных для любого уровня подготовки.",
+      "Изучайте лучшие практики мобильной разработки с помощью детализированных туториалов для всех уровней.",
   },
   {
     title: "Полезные инструменты и библиотеки",
     benefit:
-      "Открывайте для себя полезные инструменты и репозитории, которые помогут ускорить разработку и улучшить качество кода.",
+      "Открывайте для себя полезные инструменты и репозитории, которые упростят и ускорят разработку мобильных приложений.",
   },
   {
-    title: "Практическое применение",
+    title: "Применение на практике",
     benefit:
-      "Учитесь применять полученные знания на практике и сразу же внедрять их в свои проекты.",
+      "Учитесь сразу применять новые знания в проектах, чтобы улучшить навыки и добиться высоких результатов.",
   },
   {
-    title: "Тематические подборки и обновления",
+    title: "Обновления платформ и фреймворков",
     benefit:
-      "Следите за регулярными подборками лучших материалов по фронтенду и бэкенду, включая обновления популярных фреймворков и инструментов.",
+      "Следите за обновлениями популярных мобильных платформ и фреймворков, чтобы оставаться на передовой технологий.",
   },
   {
-    title: "Советы по продуктивности",
+    title: "Советы по оптимизации",
     benefit:
-      "Получайте советы и рекомендации по оптимизации рабочего процесса, чтобы работать эффективнее.",
+      "Получайте советы по улучшению производительности мобильных приложений и оптимизации кода.",
   },
 ];
 
-export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
+export default function MobilePro({ lastPosts, channelInfo }: ChannelProps) {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   return (
     <div className={styles.container}>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,
-          description: "Телеграм канал о web разработке",
+          description: "Телеграм канал о мобильной разработке",
           link: "https://t.me/mobile_dvlp",
+          inviteLink,
         }}
       />
 
       <main className={styles.mainContent}>
         <Benefits benefits={benefits} title="Почему Mobile Pro" />
         <section className={styles.join}>
-          <p>Присоедняйся и поднимай скилы с Mobile Pro</p>
+          <p>Создавай лучшие приложения с Mobile Pro</p>
           <a href="https://t.me/mobile_dvlp" className={styles.subscribeLink}>
             Подписаться
           </a>
@@ -95,13 +110,7 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           avatar={channelInfo.avatarUrl}
         />
       </main>
-      <footer className={styles.questionSection}>
-        <p>Есть вопросы или предложения?</p>
-
-        <p>
-          Напиши мне в Telegram - <a href="https://t.me/jem_jem">Jem Jem</a>
-        </p>
-      </footer>
+      <ContactSection />
     </div>
   );
 }

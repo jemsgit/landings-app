@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import AOS from "aos";
+
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
@@ -8,7 +11,9 @@ import {
 import styles from "../front-end-dev/styles.module.css";
 import Benefits from "@/app/components/Benefits/Benefits";
 import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
+import ContactSection from "@/app/components/ContactSection/ContactSection";
 
+import "aos/dist/aos.css";
 interface Info {
   avatarUrl: string;
   title: string;
@@ -22,6 +27,7 @@ interface ChannelProps {
 }
 
 const channelName = "web_stack";
+const inviteLink = "https://t.me/+wOflq_y2mV5hNGFi";
 
 export async function getStaticProps() {
   const lastPosts = await fetchLastPostsFromTelegram(channelName);
@@ -70,7 +76,14 @@ const benefits = [
   },
 ];
 
-export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
+export default function WebStack({ lastPosts, channelInfo }: ChannelProps) {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   return (
     <div className={styles.container}>
       <ChannelHeader
@@ -78,13 +91,14 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           ...channelInfo,
           description: "Телеграм канал о web разработке",
           link: "https://t.me/web_stack",
+          inviteLink,
         }}
       />
 
       <main className={styles.mainContent}>
         <Benefits benefits={benefits} title="Почему WebStack" />
         <section className={styles.join}>
-          <p>Присоедняйся и поднимай скилы с WebStack</p>
+          <p>Присоединяйся и прокачивай скилы с WebStack</p>
           <a href="https://t.me/web_stack" className={styles.subscribeLink}>
             Подписаться
           </a>
@@ -95,13 +109,7 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
           avatar={channelInfo.avatarUrl}
         />
       </main>
-      <footer className={styles.questionSection}>
-        <p>Есть вопросы или предложения?</p>
-
-        <p>
-          Напиши мне в Telegram - <a href="https://t.me/jem_jem">Jem Jem</a>
-        </p>
-      </footer>
+      <ContactSection />
     </div>
   );
 }

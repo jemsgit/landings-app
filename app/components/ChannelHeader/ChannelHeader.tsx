@@ -8,6 +8,7 @@ interface Info {
   subscribersCount: number;
   link: string;
   description: string;
+  inviteLink: string;
 }
 
 interface ChannelHeaderProps {
@@ -15,7 +16,8 @@ interface ChannelHeaderProps {
 }
 
 function ChannelHeader({ channelInfo }: ChannelHeaderProps) {
-  const { title, avatarUrl, subscribersCount, link, description } = channelInfo;
+  const { title, avatarUrl, subscribersCount, link, description, inviteLink } =
+    channelInfo;
   return (
     <div
       className={styles.headerWrapper}
@@ -46,7 +48,7 @@ function ChannelHeader({ channelInfo }: ChannelHeaderProps) {
               ])}
             </span>
           </section>
-          <a href={link} className={styles.subscribeLink}>
+          <a href={inviteLink} className={styles.subscribeLink}>
             Подписаться
           </a>
         </div>

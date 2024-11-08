@@ -8,8 +8,14 @@ const apiHash = process.env.API_HASH as string;
 const apiSession = process.env.API_SESSION as string;
 const stringSession = new StringSession(apiSession);
 
-let client: TelegramClient | null = null;
-let isClientInitialized = false;
+let client: TelegramClient | null = new TelegramClient(
+  stringSession,
+  apiId,
+  apiHash,
+  {
+    connectionRetries: 5,
+  }
+);
 
 export async function getTelegramClient() {
   if (!client) {
@@ -31,7 +37,6 @@ export async function getTelegramClient() {
       },
       onError: (err) => console.error("Telegram Client Error:", err),
     });
-    isClientInitialized = true;
   }
 
   return client;
