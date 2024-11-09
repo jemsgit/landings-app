@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Head from "next/head";
 import AOS from "aos";
 
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
@@ -87,6 +88,14 @@ export default function MobilePro({ lastPosts, channelInfo }: ChannelProps) {
   }, []);
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Telegram канал Mobile Pro</title>
+        <meta
+          name="description"
+          content="Телеграм канал о мобильной разработке"
+        />
+        <meta property="og:image" content="/og_images/mobile_pro.png" />
+      </Head>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,

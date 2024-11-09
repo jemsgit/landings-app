@@ -23,7 +23,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className={`${inter.variable} ${geistMono.variable}`}>
+    <div
+      className={`${inter.variable} ${geistMono.variable} ${styles.container}`}
+    >
       <main>{children}</main>
       <footer className={styles.footer}>© Made with ❤️ by JemJem</footer>
     </div>

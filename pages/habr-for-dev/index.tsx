@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import Head from "next/head";
 import AOS from "aos";
+
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
 import {
@@ -86,6 +88,14 @@ export default function HabrForDev({ lastPosts, channelInfo }: ChannelProps) {
   }, []);
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Telegram канал HabrForDev</title>
+        <meta
+          name="description"
+          content="Телеграм канал c лучшими статьями с Habr.ru"
+        />
+        <meta property="og:image" content="/og_images/habr_for_dev.png" />
+      </Head>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,

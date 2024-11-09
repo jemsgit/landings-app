@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import AOS from "aos";
+import Head from "next/head";
 
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
 import LastPosts, { Post } from "../../app/components/LastPosts/LastPosts";
@@ -86,6 +87,14 @@ export default function FrontEndDev({ lastPosts, channelInfo }: ChannelProps) {
   }, []);
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Telegram канал FrontEndDev</title>
+        <meta
+          name="description"
+          content="Телеграм канал о front end разработке"
+        />
+        <meta property="og:image" content="/og_images/front_end_dev.png" />
+      </Head>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,

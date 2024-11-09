@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Head from "next/head";
 import AOS from "aos";
 
 import { getSubscriberCount } from "@/app/lib/telegram-bot";
@@ -14,6 +15,7 @@ import ChannelHeader from "@/app/components/ChannelHeader/ChannelHeader";
 import ContactSection from "@/app/components/ContactSection/ContactSection";
 
 import "aos/dist/aos.css";
+
 interface Info {
   avatarUrl: string;
   title: string;
@@ -86,6 +88,11 @@ export default function WebStack({ lastPosts, channelInfo }: ChannelProps) {
   }, []);
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Telegram канал WebStack</title>
+        <meta name="description" content="Телеграм канал о web разработке" />
+        <meta property="og:image" content="/og_images/web_stack.png" />
+      </Head>
       <ChannelHeader
         channelInfo={{
           ...channelInfo,
